@@ -11,9 +11,12 @@
     "test": "vitest --run"
   },
   "dependencies": {
+    "css-loader": "^7.1.2",
+    "date-fns": "^4.1.0",
     "luxon": "^2.5.2",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "style-loader": "^4.0.0"
   },
   "devDependencies": {
     "@eslint/compat": "^1.2.0",
@@ -33,7 +36,7 @@
     "globals": "^15.11.0",
     "jest-extended": "^4.0.2",
     "jsdom": "^25.0.1",
-    "vite": "^5.4.9",
+    "vite": "^5.4.11",
     "vitest": "^2.1.3"
   }
 }

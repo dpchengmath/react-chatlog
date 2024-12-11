@@ -1,17 +1,38 @@
-import './App.css';
+import { useState, useEffect } from 'react';
+import messagesData from './data/messages.json';
 
-const App = () => {
+function App() {
+  const [entries, setEntries] = useState([]);
+
+  useEffect(() => {
+    setEntries(messagesData);
+  }, []);
+
+  const handleLikeToggle = (id) => {
+    setEntries((prevEntries) =>
+      prevEntries.map((entry) =>
+        entry.id === id ? { ...entry, liked: !entry.liked } : entry
+      )
+    );
+  };
+
   return (
-    <div id="App">
-      <header>
-        <h1>Application title</h1>
-      </header>
-      <main>
-        {/* Wave 01: Render one ChatEntry component
-        Wave 02: Render ChatLog component */}
-      </main>
+    <div>
+      <h1>{entries.filter(entry => entry.liked).length} ❤️s</h1>
+      {entries.map(entry => (
+        <div key={entry.id}>
+          <button
+            className="like"
+            onClick={() => handleLikeToggle(entry.id)}
+          >
+            {entry.liked ? '❤️' : '🤍'}
+          </button>
+          <span>{entry.sender}</span>
+          <p>{entry.body}</p>
+        </div>
+      ))}
     </div>
   );
-};
+}
 
 export default App;
