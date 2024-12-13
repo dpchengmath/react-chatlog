@@ -1,18 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { formatDistanceToNow } from 'date-fns';
+import './TimeStamp';
+import './ChatEntry.css';
+import TimeStamp from './TimeStamp';
 
 function ChatEntry({ sender, body, timeStamp, liked, onLikeToggle, isLocal }) {
   return (
     <div className={`chat-entry ${isLocal ? 'local' : 'remote'} ${liked ? 'liked' : ''}`}>
-      <h3 className="entry-name">{sender}</h3>
+      <h2 className="entry-name">{sender}</h2>
       <section className="entry-bubble">
         <p>{body}</p>
-        <time className="entry-time">
-          {formatDistanceToNow(new Date(timeStamp), { addSuffix: true })}
-        </time>
+        <TimeStamp time={timeStamp}></TimeStamp>
         <button
-          className="like-button"
+          className="like"
           onClick={onLikeToggle}
           aria-label={liked ? 'Unlike' : 'Like'}
         >

@@ -1,36 +1,37 @@
-import { useState, useEffect } from 'react';
+import { useState} from 'react';
+import './App.css';
 import messagesData from './data/messages.json';
+import ChatLog from './components/ChatLog';
 
 function App() {
-  const [entries, setEntries] = useState([]);
+  const [entries, setEntries] = useState(messagesData);
 
-  useEffect(() => {
-    setEntries(messagesData);
-  }, []);
-
-  const handleLikeToggle = (id) => {
-    setEntries((prevEntries) =>
-      prevEntries.map((entry) =>
-        entry.id === id ? { ...entry, liked: !entry.liked } : entry
-      )
-    );
+  const toggleLike = (id) => {
+    setEntries(entries => entries.map(entry => {
+      if (entry.id === id) {
+        return { ...entry, liked: !entry.liked};
+      } else {
+        return entry;
+      }
+    }));
   };
+// pass down the function that will allow us to save the state of our entries.
+// Pass it down from app to chat log
+// From chat log to chat entry
+// Register the event handler to the button and use the onclick event on the button
+// Assign the function that we pass from app to chat log to chat entry
+// update proptypes
 
   return (
-    <div>
-      <h1>{entries.filter(entry => entry.liked).length} ❤️s</h1>
-      {entries.map(entry => (
-        <div key={entry.id}>
-          <button
-            className="like"
-            onClick={() => handleLikeToggle(entry.id)}
-          >
-            {entry.liked ? '❤️' : '🤍'}
-          </button>
-          <span>{entry.sender}</span>
-          <p>{entry.body}</p>
-        </div>
-      ))}
+    <div id="App">
+      <header>
+        <h1>{entries.filter(entry => entry.liked).length} ❤️s</h1>
+      </header>
+      <main>
+        <ChatLog 
+          entries={entries}
+          onLikeToggle={toggleLike}/>
+      </main>
     </div>
   );
 }
