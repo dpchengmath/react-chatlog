@@ -10,7 +10,7 @@ function ChatLog({ entries, onLikeToggle }) {
           key={entry.id}
           {...entry}
           onLikeToggle={() => onLikeToggle(entry.id)}
-          isLocal={entry.isLocal}
+          isLocal={entry.sender === 'Vladimir'}
         />
       ))}
     </section>

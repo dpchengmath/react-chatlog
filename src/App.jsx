@@ -15,12 +15,6 @@ function App() {
       }
     }));
   };
-// pass down the function that will allow us to save the state of our entries.
-// Pass it down from app to chat log
-// From chat log to chat entry
-// Register the event handler to the button and use the onclick event on the button
-// Assign the function that we pass from app to chat log to chat entry
-// update proptypes
 
   return (
     <div id="App">
@@ -28,7 +22,7 @@ function App() {
         <h1>{entries.filter(entry => entry.liked).length} ❤️s</h1>
       </header>
       <main>
-        <ChatLog 
+        <ChatLog
           entries={entries}
           onLikeToggle={toggleLike}/>
       </main>
