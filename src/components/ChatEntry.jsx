@@ -1,4 +1,3 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 import './TimeStamp';
 import './ChatEntry.css';
@@ -10,11 +9,10 @@ function ChatEntry({ sender, body, timeStamp, liked, onLikeToggle, isLocal }) {
       <h2 className="entry-name">{sender}</h2>
       <section className="entry-bubble">
         <p>{body}</p>
-        <TimeStamp time={timeStamp}></TimeStamp>
+        <TimeStamp time={timeStamp}/>
         <button
           className="like"
           onClick={onLikeToggle}
-          aria-label={liked ? 'Unlike' : 'Like'}
         >
           {liked ? '❤️' : '🤍'}
         </button>
